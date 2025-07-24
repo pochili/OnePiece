@@ -1,6 +1,5 @@
 from bs4 import BeautifulSoup
 import requests
-
 from tools import from_dict_to_json
 
 NEXT_PAGE_TITLE="Especial:Todas"
