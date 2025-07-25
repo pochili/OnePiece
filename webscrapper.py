@@ -48,13 +48,18 @@ def get_all_wiki_content():
 def create_articles_link_list():
     # read chopper_lonks.json file and characters from one_piece_characters.json
     links = from_json_to_dict("chopper_links.json")
-    characters = from_json_to_dict("one_piece_characters.json")
-    # get all names from charactes in a list
-    names = [character['name'] for character in characters]
+    characters = from_json_to_dict("characters_links.json")
     # filter links that are not in names
-    filtered_links = {title: link for title, link in links.items() if title not in names}
+    filtered_links = {link_name: link_href for link_name, link_href in links.items() if link_name not in characters.keys()}
+    # el mateix codei pero en forma de bucle
+    # for link_name in links.keys():
+    #     if link_name not in characters.keys():
+    #         filtered_links[link_name] = links[link_name]
     # save filtered links to a new file
     from_dict_to_json(filtered_links, "articles_links.json")
+
+
+
 
 if __name__ == "__main__":
     # links = get_all_wiki_content()
@@ -63,4 +68,4 @@ if __name__ == "__main__":
     # print(f"Total links found: {len(links)}")
     #
     # from_dict_to_json(links, "chopper_links.json")
-    create_articles_link_list()
+     create_articles_link_list()
